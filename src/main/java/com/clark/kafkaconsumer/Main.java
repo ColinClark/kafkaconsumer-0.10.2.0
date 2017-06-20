@@ -37,6 +37,7 @@ public class Main {
         while (true) {
             ConsumerRecords<String, String> records = consumer.poll(100);
             for (ConsumerRecord<String, String> record : records) {
+                LOGGER.info("Inserting "+record.toString()+" into local buffer");
                 buffer.add(record);
             }
             if (buffer.size() >= minBatchSize) {
